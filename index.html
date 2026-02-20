@@ -6,39 +6,37 @@
 
 <style>
 
-/* Remove scrolling completely */
-html, body {
+body{
     margin:0;
-    height:100%;
-    overflow:hidden;
     background:black;
 }
 
-/* Fullscreen stage */
-.stage {
+/* Banner */
+.banner img{
+    width:100%;
+    height:auto;
+    display:block;
+}
+
+/* Desk container */
+.desk{
     position:relative;
-    width:100vw;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
 }
 
-/* Scene scales to ALL devices */
-.stage img {
-    max-width:100%;
-    max-height:100%;
-    object-fit:contain;
+.desk img{
+    width:100%;
+    height:auto;
+    display:block;
 }
 
-/* Clickable red book */
-.journal {
+/* Clickable Journal */
+.journal{
     position:absolute;
-    top:68%;
+    top:55%;
     left:50%;
-    transform:translate(-50%, -50%);
-    width:14%;
-    height:20%;
+    transform:translate(-50%,-50%);
+    width:18%;
+    height:25%;
     cursor:pointer;
 }
 
@@ -47,9 +45,12 @@ html, body {
 
 <body>
 
-<div class="stage">
+<div class="banner">
+<img src="banner-codex-nocturne.png">
+</div>
 
-<img src="codex_phase1.png">
+<div class="desk">
+<img src="desk-phase1.jpg">
 
 <a href="of-night-and-ruin.html">
 <div class="journal"></div>
