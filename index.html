@@ -16,46 +16,45 @@ html, body {
     overflow: hidden;
 }
 
-/* ----- CENTER THE SCENE ----- */
+/* ----- CENTER STAGE ----- */
 body {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* ----- IMAGE STAGE ----- */
+/* ----- IMAGE HOLDER ----- */
 .stage {
     position: relative;
 }
 
-/* ----- MAIN SCENE IMAGE ----- */
+/* ----- MAIN SCENE ----- */
 .stage img {
     display: block;
     max-width: 100vw;
     max-height: 100vh;
 }
 
-/* ----- RED JOURNAL CLICK ZONE ----- */
-/* Adjust ONLY these numbers later if needed */
+/* ----- RED JOURNAL CLICK AREA ----- */
+/* moved right + widened */
 
 .red-book {
     position: absolute;
 
-    top: 56%;
-    left: 41%;
+    top: 56%;        /* unchanged */
+    left: 47%;       /* moved right */
 
-    width: 12%;
-    height: 20%;
+    width: 22%;      /* nearly doubled */
+    height: 20%;     /* unchanged */
 
     cursor: pointer;
 
-    /* TEMP ALIGNMENT VISUAL */
+    /* alignment helper */
     background: rgba(255,0,0,0.25);
 }
 
 </style>
 </head>
-
 
 <body>
 
