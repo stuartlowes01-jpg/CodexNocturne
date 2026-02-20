@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <title>Codex Nocturne</title>
@@ -35,22 +34,28 @@ body {
     max-height: 100vh;
 }
 
-/* ---------- RED JOURNAL CLICK AREA ---------- */
-/* tuned to current live image */
+/* ---------- CLICK ZONE: RED JOURNAL ---------- */
+/* Tuned for current live layout */
 
 .red-book {
     position: absolute;
 
-    top: 56%;
-    left: 50%;
+    /* vertical position is good */
+    top: 57%;
 
-    width: 26%;
+    /* shift right */
+    left: 51%;
+
+    /* nearly double previous width */
+    width: 30%;
+
+    /* keep height matched to book */
     height: 20%;
 
     cursor: pointer;
 
-    /* TEMP VISUAL ALIGNMENT */
-    background: rgba(255,0,0,0.25);
+    /* TEMP: visible alignment guide */
+    background: rgba(255, 0, 0, 0.25);
 }
 
 </style>
@@ -67,5 +72,4 @@ body {
 </div>
 
 </body>
-
 </html>
