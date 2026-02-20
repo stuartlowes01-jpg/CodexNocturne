@@ -2,10 +2,10 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow: hidden;
     background: black;
 }
 
+/* Scene container */
 #desk-scene {
     width: 100vw;
     height: 100vh;
@@ -13,8 +13,16 @@ html, body {
     overflow: hidden;
 }
 
+/* Desk image scaling */
 #desk-scene img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain; /* IMPORTANT */
+}
+
+/* Desktop only: lock scrolling */
+@media (min-width: 1024px) {
+    body {
+        overflow: hidden;
+    }
 }
