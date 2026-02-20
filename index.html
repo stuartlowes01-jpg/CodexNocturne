@@ -4,9 +4,9 @@
 <head>
 <meta charset="UTF-8">
 
-<!-- MOBILE ROTATION SUPPORT -->
+<!-- MOBILE ROTATION -->
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <title>Codex Nocturne</title>
 
@@ -24,7 +24,7 @@ html, body {
 }
 
 /* ===============================
-   FADE IN FROM DARKNESS
+   FADE-IN
 ================================ */
 body {
     display: flex;
@@ -46,7 +46,7 @@ body {
 }
 
 /* ===============================
-   MAIN SCENE IMAGE
+   IMAGE
 ================================ */
 .stage img {
     display: block;
@@ -55,7 +55,7 @@ body {
 }
 
 /* ===============================
-   RED JOURNAL CLICK ZONE
+   RED BOOK CLICK AREA
 ================================ */
 .red-book {
     position: absolute;
@@ -68,19 +68,20 @@ body {
 
     cursor: pointer;
 
+    z-index: 10; /* ensures clickable */
+
     transition: all 0.35s ease;
 
     animation: idlePulse 6s ease-in-out infinite;
 }
 
 /* ===============================
-   IDLE BREATHING GLOW
+   IDLE GLOW
 ================================ */
 @keyframes idlePulse {
 
     0%,100% {
-        box-shadow:
-        0 0 6px rgba(120,0,0,0.15);
+        box-shadow: 0 0 6px rgba(120,0,0,0.15);
     }
 
     50% {
@@ -91,7 +92,7 @@ body {
 }
 
 /* ===============================
-   HOVER INTENSIFIED GLOW
+   HOVER GLOW
 ================================ */
 .red-book:hover {
 
@@ -106,16 +107,14 @@ body {
 }
 
 /* ===============================
-   PAGE EXIT FADE
+   EXIT FADE
 ================================ */
 .fade-out {
     animation: exitFade 0.8s ease forwards;
 }
 
 @keyframes exitFade {
-    to {
-        opacity: 0;
-    }
+    to { opacity: 0; }
 }
 
 </style>
@@ -126,13 +125,13 @@ body {
 
 <div class="stage">
 
-    <img src="codex-phase1.png" alt="Codex Nocturne">
+<img src="codex-phase1.png" alt="Codex Nocturne">
 
-    <a href="of-night-and-ruin.html"
-       class="red-book"
-       aria-label="Of Night and Ruin Journal"
-       onclick="return fadeAndNavigate(event)">
-    </a>
+<a href="of-night-and-ruin.html"
+   class="red-book"
+   aria-label="Of Night and Ruin Journal"
+   onclick="return fadeAndNavigate(event)">
+</a>
 
 </div>
 
@@ -140,17 +139,20 @@ body {
 <script>
 
 /* ===============================
-   CINEMATIC PAGE TRANSITION
+   SAFE NAVIGATION FADE
 ================================ */
-function fadeAndNavigate(event) {
+function fadeAndNavigate(event){
 
     event.preventDefault();
 
+    const link =
+        event.currentTarget.getAttribute("href");
+
     document.body.classList.add("fade-out");
 
-    setTimeout(() => {
-        window.location.href = event.currentTarget.href;
-    }, 700);
+    setTimeout(function(){
+        window.location.href = link;
+    },700);
 
     return false;
 }
