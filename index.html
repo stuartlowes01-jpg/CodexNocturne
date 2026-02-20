@@ -1,61 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Codex Nocturne</title>
+    <meta charset="UTF-8">
 
-<style>
+    <!-- Mobile + Tablet scaling -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-body{
-    margin:0;
-    background:black;
-}
+    <title>Codex Nocturne</title>
 
-/* Banner */
-.banner img{
-    width:100%;
-    height:auto;
-    display:block;
-}
-
-/* Desk container */
-.desk{
-    position:relative;
-}
-
-.desk img{
-    width:100%;
-    height:auto;
-    display:block;
-}
-
-/* Clickable journal */
-.journal{
-    position:absolute;
-    top:55%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    width:18%;
-    height:25%;
-}
-
-</style>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="banner">
-<img src="banner-codex-nocturne.png">
-</div>
+    <!-- MAIN DESK SCENE -->
+    <div id="desk-scene">
 
-<div class="desk">
-<img src="desk-phase1.jpg">
+        <!-- Desk Background Image -->
+        <img 
+            src="assets/desk.jpg" 
+            alt="Codex Nocturne Desk"
+            id="desk-image"
+        >
 
-<a href="of-night-and-ruin.html">
-<div class="journal"></div>
-</a>
-
-</div>
+    </div>
 
 </body>
+
 </html>
