@@ -15,14 +15,14 @@ html, body {
     overflow: hidden;
 }
 
-/* ---------- CENTER IMAGE ---------- */
+/* ---------- CENTER STAGE ---------- */
 body {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* ---------- STAGE ---------- */
+/* ---------- IMAGE STAGE ---------- */
 .stage {
     position: relative;
 }
@@ -34,28 +34,22 @@ body {
     max-height: 100vh;
 }
 
-/* ---------- CLICK ZONE: RED JOURNAL ---------- */
-/* Tuned for current live layout */
+/* ---------- RED JOURNAL CLICK ZONE ---------- */
+/* shifted LEFT + narrowed */
 
 .red-book {
     position: absolute;
 
-    /* vertical position is good */
-    top: 57%;
+    top: 57%;      /* keep */
+    left: 44%;     /* moved left */
 
-    /* shift right */
-    left: 51%;
-
-    /* nearly double previous width */
-    width: 30%;
-
-    /* keep height matched to book */
-    height: 20%;
+    width: 20%;    /* reduced width */
+    height: 20%;   /* keep */
 
     cursor: pointer;
 
-    /* TEMP: visible alignment guide */
-    background: rgba(255, 0, 0, 0.25);
+    /* alignment helper */
+    background: rgba(255,0,0,0.25);
 }
 
 </style>
