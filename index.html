@@ -6,7 +6,7 @@
 
 <style>
 
-/* Lock page */
+/* Lock page /
 html, body {
     margin:0;
     height:100%;
@@ -14,42 +14,37 @@ html, body {
     background:black;
 }
 
-/* Main vertical layout */
+/ Main layout /
 .container {
     height:100vh;
     display:flex;
     flex-direction:column;
 }
 
-/* Banner — compact */
-.banner {
-    height:12vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-
+/ Banner — full width, natural height /
 .banner img{
-    max-height:100%;
-    width:auto;
+    width:100%;
+    height:auto;
+    display:block;
 }
 
-/* Desk fills remaining space */
+/ Desk area fills remaining space /
 .desk{
     position:relative;
-    height:88vh;
+    flex:1;
     display:flex;
     justify-content:center;
     align-items:center;
 }
 
+/ Desk scales proportionally /
 .desk img{
     max-width:100%;
     max-height:100%;
     object-fit:contain;
 }
 
-/* Clickable red journal */
+/ Clickable journal */
 .journal{
     position:absolute;
     top:55%;
