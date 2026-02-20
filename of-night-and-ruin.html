@@ -1,15 +1,235 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
 <meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
 <title>Of Night and Ruin</title>
+
+<style>
+
+/* ===============================
+   WORLD
+================================ */
+body{
+    margin:0;
+    background:black;
+    color:#d6d1c4;
+    font-family: Georgia, serif;
+    line-height:1.75;
+    display:flex;
+    justify-content:center;
+    opacity:0;
+    animation:fadeIn 2s ease forwards;
+}
+
+/* FADE IN */
+@keyframes fadeIn{
+    to{opacity:1;}
+}
+
+/* ===============================
+   JOURNAL PAGE
+================================ */
+.page{
+    max-width:720px;
+    padding:70px 30px;
+    position:relative;
+}
+
+/* SUBTLE CANDLE AMBIENCE */
+.page::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+
+    background:
+    radial-gradient(
+        circle at 50% 30%,
+        rgba(120,60,20,0.12),
+        transparent 70%
+    );
+
+    animation:candle 8s ease-in-out infinite;
+}
+
+@keyframes candle{
+    0%,100%{opacity:.85;}
+    50%{opacity:1;}
+}
+
+/* ===============================
+   TITLE
+================================ */
+h1{
+    text-align:center;
+    font-weight:normal;
+    letter-spacing:3px;
+    margin-bottom:60px;
+}
+
+/* ===============================
+   TEXT APPEAR
+================================ */
+p{
+    opacity:0;
+    transform:translateY(10px);
+    animation:textRise 1.6s ease forwards;
+}
+
+@keyframes textRise{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* stagger reading feel */
+p:nth-child(1){animation-delay:.3s;}
+p:nth-child(2){animation-delay:.6s;}
+p:nth-child(3){animation-delay:.9s;}
+p:nth-child(4){animation-delay:1.2s;}
+p:nth-child(5){animation-delay:1.5s;}
+
+/* ===============================
+   MEMORY LAYER
+================================ */
+.memory{
+    font-style:italic;
+    opacity:.85;
+    margin:50px 0;
+}
+
+/* ===============================
+   MANUSCRIPT ENTRY
+================================ */
+.manuscript{
+    margin:70px 0;
+    padding:35px;
+
+    background:rgba(40,0,0,0.18);
+    border-left:2px solid #7a0000;
+
+    font-style:italic;
+
+    box-shadow:
+        inset 0 0 25px rgba(120,0,0,0.25),
+        0 0 20px rgba(80,0,0,0.15);
+}
+
+/* ===============================
+   RETURN LAYER
+================================ */
+.return{
+    margin-top:60px;
+}
+
+/* ===============================
+   PAGE EXIT
+================================ */
+.fade-out{
+    animation:fadeOut .8s ease forwards;
+}
+
+@keyframes fadeOut{
+    to{opacity:0;}
+}
+
+/* BACK LINK */
+.back{
+    display:block;
+    text-align:center;
+    margin-top:80px;
+    color:#aaa;
+    text-decoration:none;
+    letter-spacing:2px;
+}
+
+.back:hover{
+    color:#fff;
+}
+
+</style>
 </head>
 
-<body style="background:black; color:#d6cbb5; padding:80px; font-family:serif;">
+<body>
+
+<div class="page">
 
 <h1>Of Night and Ruin</h1>
 
-<p>Journal entries will appear here.</p>
+<p>
+I did not expect the house to remain intact.
+Time rarely grants abandoned places such restraint...
+</p>
+
+<p>
+The silence did not feel empty.
+Only patient.
+</p>
+
+<div class="memory">
+<p>
+Someone seated exactly where I now stood.
+Waiting.
+</p>
+</div>
+
+<div class="manuscript">
+
+<p>
+The age grows restless beyond tolerance.<br><br>
+
+Light encroaches where darkness once ruled unchallenged.
+Survival now favors absence over presence.<br><br>
+
+Therefore I withdraw.<br><br>
+
+Let the centuries turn without my witness.<br><br>
+
+This place shall remain sufficient.<br><br>
+
+When quiet returns to the world,
+I may walk within it once more.<br><br>
+
+Until then, memory sleeps.
+</p>
+
+</div>
+
+<div class="return">
+<p>
+I became aware of the room again only gradually.
+The house stood empty.
+Yet the final line lingered long after I closed the book.
+</p>
+
+<p>
+Until then.
+</p>
+</div>
+
+<a href="index.html"
+class="back"
+onclick="return fadeBack(event)">
+Return to the Desk</a>
+
+</div>
+
+<script>
+
+function fadeBack(e){
+    e.preventDefault();
+    document.body.classList.add("fade-out");
+    setTimeout(()=>{
+        window.location.href=e.target.href;
+    },700);
+}
+
+</script>
 
 </body>
 </html>
