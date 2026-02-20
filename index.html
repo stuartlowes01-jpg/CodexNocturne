@@ -14,28 +14,31 @@ html, body {
     background:black;
 }
 
-/* Full screen stage */
+/* Fullscreen stage */
 .stage {
     position:relative;
     width:100vw;
     height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
-/* Background scene */
+/* Scene scales to ALL devices */
 .stage img {
-    width:100%;
-    height:100%;
+    max-width:100%;
+    max-height:100%;
     object-fit:contain;
 }
 
-/* Clickable journal */
-.journal{
+/* Clickable red book */
+.journal {
     position:absolute;
-    top:63%;
+    top:68%;
     left:50%;
-    transform:translate(-50%,-50%);
-    width:12%;
-    height:18%;
+    transform:translate(-50%, -50%);
+    width:14%;
+    height:20%;
     cursor:pointer;
 }
 
@@ -46,7 +49,7 @@ html, body {
 
 <div class="stage">
 
-<img src="banner-desk-phase1.jpg">
+<img src="codex_phase1.png">
 
 <a href="of-night-and-ruin.html">
 <div class="journal"></div>
