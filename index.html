@@ -7,7 +7,7 @@
 
 <style>
 
-/* ----- PAGE RESET ----- */
+/* ---------- PAGE RESET ---------- */
 html, body {
     margin: 0;
     padding: 0;
@@ -16,40 +16,40 @@ html, body {
     overflow: hidden;
 }
 
-/* ----- CENTER STAGE ----- */
+/* ---------- CENTER IMAGE ---------- */
 body {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* ----- IMAGE HOLDER ----- */
+/* ---------- STAGE ---------- */
 .stage {
     position: relative;
 }
 
-/* ----- MAIN SCENE ----- */
+/* ---------- SCENE IMAGE ---------- */
 .stage img {
     display: block;
     max-width: 100vw;
     max-height: 100vh;
 }
 
-/* ----- RED JOURNAL CLICK AREA ----- */
-/* moved right + widened */
+/* ---------- RED JOURNAL CLICK AREA ---------- */
+/* tuned to current live image */
 
 .red-book {
     position: absolute;
 
-    top: 56%;        /* unchanged */
-    left: 47%;       /* moved right */
+    top: 56%;
+    left: 50%;
 
-    width: 22%;      /* nearly doubled */
-    height: 20%;     /* unchanged */
+    width: 26%;
+    height: 20%;
 
     cursor: pointer;
 
-    /* alignment helper */
+    /* TEMP VISUAL ALIGNMENT */
     background: rgba(255,0,0,0.25);
 }
 
