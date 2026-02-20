@@ -1,26 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Codex Nocturne</title>
+<meta charset="UTF-8">
+<title>Codex Nocturne</title>
 
-    <link rel="stylesheet" href="style.css">
+<style>
+
+/* Remove scrolling completely */
+html, body {
+    margin:0;
+    height:100%;
+    overflow:hidden;
+    background:black;
+}
+
+/* Full screen stage */
+.stage {
+    position:relative;
+    width:100vw;
+    height:100vh;
+}
+
+/* Background scene */
+.stage img {
+    width:100%;
+    height:100%;
+    object-fit:contain;
+}
+
+/* Clickable journal */
+.journal{
+    position:absolute;
+    top:63%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:12%;
+    height:18%;
+    cursor:pointer;
+}
+
+</style>
 </head>
 
 <body>
 
-    <!-- HEADER OVERLAY -->
-    <header id="site-header">
-        <img src="assets/header.png" alt="Codex Nocturne Header">
-    </header>
+<div class="stage">
 
-    <!-- DESK SCENE -->
-    <div id="desk-scene">
-        <img src="assets/desk_phase1.jpg" alt="Codex Nocturne Desk">
-    </div>
+<img src="banner-desk-phase1.jpg">
+
+<a href="of-night-and-ruin.html">
+<div class="journal"></div>
+</a>
+
+</div>
 
 </body>
-
 </html>
