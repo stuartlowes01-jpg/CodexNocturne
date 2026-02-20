@@ -19,23 +19,29 @@ html, body {
 }
 
 /* ===============================
-   CENTER CINEMATIC STAGE
+   FADE-IN FROM DARKNESS
 ================================ */
 body {
     display: flex;
     justify-content: center;
     align-items: center;
+    opacity: 0;
+    animation: sceneFade 2.5s ease forwards;
+}
+
+@keyframes sceneFade {
+    to { opacity: 1; }
 }
 
 /* ===============================
-   IMAGE STAGE
+   STAGE
 ================================ */
 .stage {
     position: relative;
 }
 
 /* ===============================
-   MAIN SCENE IMAGE
+   MAIN IMAGE
 ================================ */
 .stage img {
     display: block;
@@ -58,19 +64,53 @@ body {
     cursor: pointer;
 
     transition: all 0.35s ease;
+
+    animation: idlePulse 6s ease-in-out infinite;
 }
 
 /* ===============================
-   CINEMATIC GLOW EFFECT
+   IDLE BREATHING GLOW
+================================ */
+@keyframes idlePulse {
+
+    0%,100% {
+        box-shadow:
+        0 0 6px rgba(120,0,0,0.15);
+    }
+
+    50% {
+        box-shadow:
+        0 0 18px rgba(160,0,0,0.45),
+        0 0 35px rgba(160,0,0,0.25);
+    }
+}
+
+/* ===============================
+   HOVER INTENSIFIES GLOW
 ================================ */
 .red-book:hover {
 
+    animation: none;
+
     box-shadow:
-        0 0 18px rgba(180, 0, 0, 0.6),
-        0 0 40px rgba(180, 0, 0, 0.35),
-        inset 0 0 25px rgba(255, 40, 40, 0.25);
+        0 0 22px rgba(200,0,0,0.8),
+        0 0 45px rgba(200,0,0,0.45),
+        inset 0 0 25px rgba(255,40,40,0.3);
 
     border-radius: 6px;
+}
+
+/* ===============================
+   PAGE EXIT FADE
+================================ */
+.fade-out {
+    animation: exitFade 0.8s ease forwards;
+}
+
+@keyframes exitFade {
+    to {
+        opacity: 0;
+    }
 }
 
 </style>
@@ -84,11 +124,32 @@ body {
 
     <a href="of-night-and-ruin.html"
        class="red-book"
-       aria-label="Of Night and Ruin Journal">
+       aria-label="Of Night and Ruin Journal"
+       onclick="return fadeAndNavigate(event)">
     </a>
 
 </div>
 
-</body>
 
+<script>
+
+/* ===============================
+   CINEMATIC PAGE TRANSITION
+================================ */
+function fadeAndNavigate(event) {
+
+    event.preventDefault();
+
+    document.body.classList.add("fade-out");
+
+    setTimeout(() => {
+        window.location.href = event.currentTarget.href;
+    }, 700);
+
+    return false;
+}
+
+</script>
+
+</body>
 </html>
