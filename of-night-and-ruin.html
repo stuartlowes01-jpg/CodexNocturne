@@ -1,109 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
 
-<title>Codex Nocturne — Journal</title>
+<meta charset="UTF-8">
+<title>Of Night and Ruin</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 
-/* ===============================
-   WORLD
-================================ */
-body{
-    margin:0;
-    background:black;
-    color:#e2dccb;
-    font-family:Georgia, serif;
+/* =====================================
+   GLOBAL
+===================================== */
+
+html, body {
+    margin: 0;
+    height: 100%;
+    background: #0b0b0c;
+    overflow: hidden; /* DESK RULE */
+    font-family: "Cormorant Garamond", serif;
 }
 
-/* ===============================
-   LAYOUT
-================================ */
-.container{
-    display:flex;
-    min-height:100vh;
+
+/* =====================================
+   JOURNAL FRAME
+===================================== */
+
+#journal {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
 }
 
-/* ===============================
+
+/* =====================================
    SIDEBAR
-================================ */
-.sidebar{
-    width:260px;
-    background:#0b0b0b;
-    padding:40px 20px;
-    border-right:1px solid #222;
+===================================== */
+
+#contents {
+    width: 260px;
+    background: #151515;
+    color: #8c8476;
+    overflow-y: auto;
+    border-right: 1px solid rgba(255,255,255,0.05);
 }
 
-.sidebar h2{
-    font-weight:normal;
-    letter-spacing:2px;
-    margin-bottom:30px;
+#contents a {
+    display: block;
+    padding: 14px 24px;
+    text-decoration: none;
+    color: inherit;
+    transition: 0.3s;
 }
 
-.sidebar a{
-    display:block;
-    color:#aaa;
-    text-decoration:none;
-    margin-bottom:15px;
+#contents a:hover {
+    color: #d6c9a5;
 }
 
-.sidebar a:hover{
-    color:white;
+
+/* =====================================
+   BOOK AREA (STATIC)
+===================================== */
+
+#entry-frame {
+
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px;
 }
 
-/* ===============================
-   JOURNAL AREA
-================================ */
-.main{
-    flex:1;
-    display:flex;
-    justify-content:center;
+
+/* =====================================
+   SCROLLING JOURNAL PAGE
+===================================== */
+
+#entry-container {
+
+    width: min(900px, 85vw);
+    height: 90vh;
+
+    overflow-y: auto;   /* JOURNAL SCROLL */
+
+    padding: 80px 90px;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(255,252,240,1) 0%,
+            rgba(245,238,220,1) 70%,
+            rgba(220,210,185,1) 100%
+        );
+
+    box-shadow:
+        inset 0 0 80px rgba(0,0,0,0.15),
+        0 0 120px rgba(0,0,0,0.9);
+
+    color: #2b2622;
+
+    transition: opacity 0.6s ease;
 }
 
-.page{
-    max-width:760px;
-    padding:80px 25px;
+
+/* =====================================
+   PAPER TEXTURE
+===================================== */
+
+#entry-container::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            rgba(0,0,0,0.015),
+            rgba(0,0,0,0.015) 1px,
+            transparent 1px,
+            transparent 3px
+        );
 }
 
-/* ===============================
-   PAPER SYSTEM
-================================ */
-.section{
-    margin:70px 0;
-    padding:50px;
-    background:rgba(35,30,22,0.85);
+
+/* =====================================
+   ENTRY TYPOGRAPHY
+===================================== */
+
+.entry-text {
+    font-size: 20px;
+    line-height: 1.9;
+    letter-spacing: 0.3px;
 }
 
-.memory{
-    font-style:italic;
-    background:rgba(50,44,34,0.75);
+.entry-text p {
+    text-indent: 2em;
+    margin-bottom: 1.6em;
 }
 
-.manuscript{
-    font-style:italic;
-    background:rgba(45,0,0,0.55);
-    border-left:3px solid #6d0000;
+
+/* =====================================
+   TITLE
+===================================== */
+
+.entry-title {
+    text-align: center;
+    letter-spacing: 2px;
+    margin-bottom: 60px;
+    font-weight: 400;
 }
 
-/* ===============================
-   MOBILE
-================================ */
-@media(max-width:900px){
 
-.container{
-    flex-direction:column;
-}
+/* =====================================
+   FADE TRANSITION
+===================================== */
 
-.sidebar{
-    width:100%;
-    border-right:none;
-    border-bottom:1px solid #222;
-}
-
+.fade {
+    opacity: 0;
 }
 
 </style>
@@ -111,70 +166,68 @@ body{
 
 <body>
 
-<div class="container">
+<div id="journal">
 
-<!-- ===============================
-     SIDEBAR
-================================ -->
+    <!-- CONTENTS -->
+    <aside id="contents">
 
-<div class="sidebar">
+        <a onclick="loadEntry('entries/entry01.html')">
+            Entry I
+        </a>
 
-<h2>Journal</h2>
+        <a onclick="loadEntry('entries/entry02.html')">
+            Entry II
+        </a>
 
-<a href="?entry=entry01">Entry I</a>
-
-<br>
-
-<a href="index.html">Return to Desk</a>
-
-</div>
+    </aside>
 
 
-<!-- ===============================
-     ENTRY DISPLAY
-================================ -->
+    <!-- BOOK -->
+    <div id="entry-frame">
 
-<div class="main">
+        <div id="entry-container">
+            Loading...
+        </div>
 
-<div id="content" class="page">
-
-<p>Opening journal...</p>
-
-</div>
-
-</div>
+    </div>
 
 </div>
 
 
 <script>
 
-/* ===============================
-   JOURNAL ENTRY LOADER
-================================ */
+/* =====================================
+   ENTRY LOADER
+===================================== */
 
-const params =
-    new URLSearchParams(window.location.search);
+function loadEntry(entry) {
 
-const entry =
-    params.get("entry") || "entry01";
+    const container =
+        document.getElementById("entry-container");
 
-fetch("entries/" + entry + ".html")
-.then(response => {
+    container.classList.add("fade");
 
-    if(!response.ok){
-        throw new Error("Entry missing");
-    }
+    setTimeout(() => {
 
-    return response.text();
-})
-.then(data => {
-    document.getElementById("content").innerHTML = data;
-})
-.catch(() => {
-    document.getElementById("content").innerHTML =
-        "<p>The journal contains no readable entry.</p>";
-});
+        fetch(entry)
+        .then(r => r.text())
+        .then(html => {
+
+            container.innerHTML = html;
+            container.scrollTop = 0; // reset page
+            container.classList.remove("fade");
+
+        });
+
+    }, 300);
+}
+
+
+/* AUTO LOAD FIRST ENTRY */
+
+window.onload = () => {
+    loadEntry("entries/entry01.html");
+};
 
 </script>
 
