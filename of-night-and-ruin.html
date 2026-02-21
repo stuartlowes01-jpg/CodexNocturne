@@ -3,7 +3,6 @@
 
 <head>
 <meta charset="UTF-8">
-
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
@@ -19,39 +18,64 @@ body{
     background:black;
     color:#e2dccb;
     font-family:Georgia, serif;
-    line-height:1.9;
-
-    display:flex;
-    justify-content:center;
-
-    opacity:0;
-    animation:fadeIn 2s ease forwards;
-}
-
-@keyframes fadeIn{
-    to{opacity:1;}
 }
 
 /* ===============================
-   PAGE AREA
+   LAYOUT
 ================================ */
+.container{
+    display:flex;
+    min-height:100vh;
+}
+
+/* ===============================
+   SIDEBAR
+================================ */
+.sidebar{
+    width:260px;
+    background:#0b0b0b;
+    padding:40px 20px;
+    border-right:1px solid #222;
+}
+
+.sidebar h2{
+    font-weight:normal;
+    letter-spacing:2px;
+    margin-bottom:30px;
+}
+
+.sidebar a{
+    display:block;
+    color:#aaa;
+    text-decoration:none;
+    margin-bottom:15px;
+}
+
+.sidebar a:hover{
+    color:white;
+}
+
+/* ===============================
+   JOURNAL AREA
+================================ */
+.main{
+    flex:1;
+    display:flex;
+    justify-content:center;
+}
+
 .page{
     max-width:760px;
     padding:80px 25px;
 }
 
 /* ===============================
-   JOURNAL PAPER SYSTEM
+   PAPER SYSTEM
 ================================ */
 .section{
     margin:70px 0;
     padding:50px;
-
     background:rgba(35,30,22,0.85);
-
-    box-shadow:
-        inset 0 0 40px rgba(0,0,0,.5),
-        0 0 50px rgba(0,0,0,.7);
 }
 
 .memory{
@@ -66,90 +90,82 @@ body{
 }
 
 /* ===============================
-   BACK LINK
+   MOBILE
 ================================ */
-.back{
-    display:block;
-    text-align:center;
-    margin-top:90px;
-    color:#aaa;
-    text-decoration:none;
-    letter-spacing:2px;
+@media(max-width:900px){
+
+.container{
+    flex-direction:column;
 }
 
-.back:hover{
-    color:white;
+.sidebar{
+    width:100%;
+    border-right:none;
+    border-bottom:1px solid #222;
 }
 
-/* ===============================
-   FADE OUT
-================================ */
-.fade-out{
-    animation:fadeOut .8s ease forwards;
-}
-
-@keyframes fadeOut{
-    to{opacity:0;}
 }
 
 </style>
 </head>
 
-
 <body>
 
-<div class="page" id="content">
+<div class="container">
 
-<p>The journal awaits its first entry.</p>
+<!-- ===============================
+     SIDEBAR
+================================ -->
+
+<div class="sidebar">
+
+<h2>Journal</h2>
+
+<a href="?entry=entry01">Entry I</a>
+<a href="?entry=entry02">Entry II</a>
+<a href="?entry=entry03">Entry III</a>
+
+<br><br>
+
+<a href="index.html">Return to Desk</a>
 
 </div>
 
 
-<a href="index.html"
-class="back"
-onclick="return fadeBack(event)">
-Return to the Desk
-</a>
+<!-- ===============================
+     ENTRY CONTENT
+================================ -->
+
+<div class="main">
+
+<div class="page" id="content">
+Opening journal...
+</div>
+
+</div>
+
+</div>
 
 
 <script>
 
-/* ===============================
-   LOAD JOURNAL ENTRY
-================================ */
+/* LOAD ENTRY */
 
 const params =
-    new URLSearchParams(window.location.search);
+ new URLSearchParams(window.location.search);
 
 const entry =
-    params.get("entry") || "template";
+ params.get("entry") || "entry01";
 
 fetch("entries/" + entry + ".html")
-.then(response => response.text())
-.then(data => {
-    document.getElementById("content").innerHTML = data;
+.then(r=>r.text())
+.then(data=>{
+ document.getElementById("content").innerHTML=data;
 })
-.catch(() => {
-    document.getElementById("content").innerHTML =
-        "<p>The journal awaits its first entry.</p>";
+.catch(()=>{
+ document.getElementById("content").innerHTML=
+ "<p>No entry found.</p>";
 });
-
-
-/* ===============================
-   RETURN FADE
-================================ */
-
-function fadeBack(event){
-    event.preventDefault();
-
-    document.body.classList.add("fade-out");
-
-    setTimeout(function(){
-        window.location.href="index.html";
-    },700);
-
-    return false;
-}
 
 </script>
 
