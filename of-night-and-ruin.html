@@ -3,10 +3,11 @@
 
 <head>
 <meta charset="UTF-8">
+
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>Of Night and Ruin</title>
+<title>Codex Nocturne — Journal</title>
 
 <style>
 
@@ -16,119 +17,72 @@ content="width=device-width, initial-scale=1.0">
 body{
     margin:0;
     background:black;
-    color:#d6d1c4;
-    font-family: Georgia, serif;
-    line-height:1.75;
+    color:#e2dccb;
+    font-family:Georgia, serif;
+    line-height:1.9;
+
     display:flex;
     justify-content:center;
+
     opacity:0;
     animation:fadeIn 2s ease forwards;
 }
 
-/* FADE IN */
 @keyframes fadeIn{
     to{opacity:1;}
 }
 
 /* ===============================
-   JOURNAL PAGE
+   PAGE AREA
 ================================ */
 .page{
-    max-width:720px;
-    padding:70px 30px;
-    position:relative;
-}
-
-/* SUBTLE CANDLE AMBIENCE */
-.page::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-
-    background:
-    radial-gradient(
-        circle at 50% 30%,
-        rgba(120,60,20,0.12),
-        transparent 70%
-    );
-
-    animation:candle 8s ease-in-out infinite;
-}
-
-@keyframes candle{
-    0%,100%{opacity:.85;}
-    50%{opacity:1;}
+    max-width:760px;
+    padding:80px 25px;
 }
 
 /* ===============================
-   TITLE
+   JOURNAL PAPER SYSTEM
 ================================ */
-h1{
-    text-align:center;
-    font-weight:normal;
-    letter-spacing:3px;
-    margin-bottom:60px;
-}
-
-/* ===============================
-   TEXT APPEAR
-================================ */
-p{
-    opacity:0;
-    transform:translateY(10px);
-    animation:textRise 1.6s ease forwards;
-}
-
-@keyframes textRise{
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-/* stagger reading feel */
-p:nth-child(1){animation-delay:.3s;}
-p:nth-child(2){animation-delay:.6s;}
-p:nth-child(3){animation-delay:.9s;}
-p:nth-child(4){animation-delay:1.2s;}
-p:nth-child(5){animation-delay:1.5s;}
-
-/* ===============================
-   MEMORY LAYER
-================================ */
-.memory{
-    font-style:italic;
-    opacity:.85;
-    margin:50px 0;
-}
-
-/* ===============================
-   MANUSCRIPT ENTRY
-================================ */
-.manuscript{
+.section{
     margin:70px 0;
-    padding:35px;
+    padding:50px;
 
-    background:rgba(40,0,0,0.18);
-    border-left:2px solid #7a0000;
-
-    font-style:italic;
+    background:rgba(35,30,22,0.85);
 
     box-shadow:
-        inset 0 0 25px rgba(120,0,0,0.25),
-        0 0 20px rgba(80,0,0,0.15);
+        inset 0 0 40px rgba(0,0,0,.5),
+        0 0 50px rgba(0,0,0,.7);
+}
+
+.memory{
+    font-style:italic;
+    background:rgba(50,44,34,0.75);
+}
+
+.manuscript{
+    font-style:italic;
+    background:rgba(45,0,0,0.55);
+    border-left:3px solid #6d0000;
 }
 
 /* ===============================
-   RETURN LAYER
+   BACK LINK
 ================================ */
-.return{
-    margin-top:60px;
+.back{
+    display:block;
+    text-align:center;
+    margin-top:90px;
+    color:#aaa;
+    text-decoration:none;
+    letter-spacing:2px;
+}
+
+.back:hover{
+    color:white;
 }
 
 /* ===============================
-   PAGE EXIT
+   FADE OUT
 ================================ */
 .fade-out{
     animation:fadeOut .8s ease forwards;
@@ -138,95 +92,63 @@ p:nth-child(5){animation-delay:1.5s;}
     to{opacity:0;}
 }
 
-/* BACK LINK */
-.back{
-    display:block;
-    text-align:center;
-    margin-top:80px;
-    color:#aaa;
-    text-decoration:none;
-    letter-spacing:2px;
-}
-
-.back:hover{
-    color:#fff;
-}
-
 </style>
 </head>
 
+
 <body>
 
-<div class="page">
+<div class="page" id="content">
 
-<h1>Of Night and Ruin</h1>
-
-<p>
-I did not expect the house to remain intact.
-Time rarely grants abandoned places such restraint...
-</p>
-
-<p>
-The silence did not feel empty.
-Only patient.
-</p>
-
-<div class="memory">
-<p>
-Someone seated exactly where I now stood.
-Waiting.
-</p>
-</div>
-
-<div class="manuscript">
-
-<p>
-The age grows restless beyond tolerance.<br><br>
-
-Light encroaches where darkness once ruled unchallenged.
-Survival now favors absence over presence.<br><br>
-
-Therefore I withdraw.<br><br>
-
-Let the centuries turn without my witness.<br><br>
-
-This place shall remain sufficient.<br><br>
-
-When quiet returns to the world,
-I may walk within it once more.<br><br>
-
-Until then, memory sleeps.
-</p>
+<p>The journal awaits its first entry.</p>
 
 </div>
 
-<div class="return">
-<p>
-I became aware of the room again only gradually.
-The house stood empty.
-Yet the final line lingered long after I closed the book.
-</p>
-
-<p>
-Until then.
-</p>
-</div>
 
 <a href="index.html"
 class="back"
 onclick="return fadeBack(event)">
-Return to the Desk</a>
+Return to the Desk
+</a>
 
-</div>
 
 <script>
 
-function fadeBack(e){
-    e.preventDefault();
+/* ===============================
+   LOAD JOURNAL ENTRY
+================================ */
+
+const params =
+    new URLSearchParams(window.location.search);
+
+const entry =
+    params.get("entry") || "template";
+
+fetch("entries/" + entry + ".html")
+.then(response => response.text())
+.then(data => {
+    document.getElementById("content").innerHTML = data;
+})
+.catch(() => {
+    document.getElementById("content").innerHTML =
+        "<p>The journal awaits its first entry.</p>";
+});
+
+
+/* ===============================
+   RETURN FADE
+================================ */
+
+function fadeBack(event){
+    event.preventDefault();
+
     document.body.classList.add("fade-out");
-    setTimeout(()=>{
-        window.location.href=e.target.href;
+
+    setTimeout(function(){
+        window.location.href="index.html";
     },700);
+
+    return false;
 }
 
 </script>
