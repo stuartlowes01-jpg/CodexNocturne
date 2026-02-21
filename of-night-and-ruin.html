@@ -122,10 +122,8 @@ body{
 <h2>Journal</h2>
 
 <a href="?entry=entry01">Entry I</a>
-<a href="?entry=entry02">Entry II</a>
-<a href="?entry=entry03">Entry III</a>
 
-<br><br>
+<br>
 
 <a href="index.html">Return to Desk</a>
 
@@ -133,13 +131,15 @@ body{
 
 
 <!-- ===============================
-     ENTRY CONTENT
+     ENTRY DISPLAY
 ================================ -->
 
 <div class="main">
 
-<div class="page" id="content">
-Opening journal...
+<div id="content" class="page">
+
+<p>Opening journal...</p>
+
 </div>
 
 </div>
@@ -149,22 +149,31 @@ Opening journal...
 
 <script>
 
-/* LOAD ENTRY */
+/* ===============================
+   JOURNAL ENTRY LOADER
+================================ */
 
 const params =
- new URLSearchParams(window.location.search);
+    new URLSearchParams(window.location.search);
 
 const entry =
- params.get("entry") || "entry01";
+    params.get("entry") || "entry01";
 
 fetch("entries/" + entry + ".html")
-.then(r=>r.text())
-.then(data=>{
- document.getElementById("content").innerHTML=data;
+.then(response => {
+
+    if(!response.ok){
+        throw new Error("Entry missing");
+    }
+
+    return response.text();
 })
-.catch(()=>{
- document.getElementById("content").innerHTML=
- "<p>No entry found.</p>";
+.then(data => {
+    document.getElementById("content").innerHTML = data;
+})
+.catch(() => {
+    document.getElementById("content").innerHTML =
+        "<p>The journal contains no readable entry.</p>";
 });
 
 </script>
