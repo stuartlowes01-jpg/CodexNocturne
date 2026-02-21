@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
 
+<head>
 <meta charset="UTF-8">
 <title>Of Night and Ruin</title>
 
@@ -9,33 +9,33 @@
 
 <style>
 
-/* =====================================
-   GLOBAL
-===================================== */
+/* ==================================================
+   GLOBAL DESK RULE
+   DESK NEVER SCROLLS
+================================================== */
 
 html, body {
     margin: 0;
     height: 100%;
+    overflow: hidden;
     background: #0b0b0c;
-    overflow: hidden; /* DESK RULE */
     font-family: "Cormorant Garamond", serif;
 }
 
 
-/* =====================================
-   JOURNAL FRAME
-===================================== */
+/* ==================================================
+   JOURNAL LAYOUT
+================================================== */
 
 #journal {
     display: flex;
     height: 100vh;
-    width: 100vw;
 }
 
 
-/* =====================================
+/* ==================================================
    SIDEBAR
-===================================== */
+================================================== */
 
 #contents {
     width: 260px;
@@ -50,7 +50,7 @@ html, body {
     padding: 14px 24px;
     text-decoration: none;
     color: inherit;
-    transition: 0.3s;
+    cursor: pointer;
 }
 
 #contents a:hover {
@@ -58,94 +58,100 @@ html, body {
 }
 
 
-/* =====================================
-   BOOK AREA (STATIC)
-===================================== */
+/* ==================================================
+   BOOK FRAME (STATIC)
+================================================== */
 
 #entry-frame {
-
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-
-    padding: 40px;
 }
 
 
-/* =====================================
-   SCROLLING JOURNAL PAGE
-===================================== */
+/* ==================================================
+   SCROLLING JOURNAL SPACE
+================================================== */
 
 #entry-container {
-
-    width: min(900px, 85vw);
+    width: min(1000px, 85vw);
     height: 90vh;
 
-    overflow-y: auto;   /* JOURNAL SCROLL */
+    overflow-y: auto;
 
-    padding: 80px 90px;
+    padding: 60px;
 
-    background:
-        radial-gradient(
-            ellipse at center,
-            rgba(255,252,240,1) 0%,
-            rgba(245,238,220,1) 70%,
-            rgba(220,210,185,1) 100%
-        );
-
-    box-shadow:
-        inset 0 0 80px rgba(0,0,0,0.15),
-        0 0 120px rgba(0,0,0,0.9);
-
-    color: #2b2622;
+    color: #cfc7b4;
 
     transition: opacity 0.6s ease;
 }
 
 
-/* =====================================
-   PAPER TEXTURE
-===================================== */
+/* ==================================================
+   PRESENT TIME (NOT PAPER)
+================================================== */
 
-#entry-container::after {
-    content:"";
-    position:absolute;
-    inset:0;
-    pointer-events:none;
+.present {
+    max-width: 800px;
+    margin: 80px auto;
+    font-size: 19px;
+    line-height: 1.8;
+}
+
+
+/* ==================================================
+   MEMORY / FLASHBACK
+================================================== */
+
+.memory {
+    max-width: 800px;
+    margin: 120px auto;
+    font-style: italic;
+    opacity: 0.85;
+    color: #9f9685;
+}
+
+
+/* ==================================================
+   TRUE JOURNAL PAGE (PARCHMENT ONLY)
+================================================== */
+
+.journal-entry {
+
+    margin: 140px auto;
+    padding: 80px 90px;
 
     background:
-        repeating-linear-gradient(
-            0deg,
-            rgba(0,0,0,0.015),
-            rgba(0,0,0,0.015) 1px,
-            transparent 1px,
-            transparent 3px
+        radial-gradient(
+            ellipse at center,
+            #fffdf2 0%,
+            #f2ead2 70%,
+            #d8ccb0 100%
         );
+
+    box-shadow:
+        inset 0 0 70px rgba(0,0,0,0.15),
+        0 0 80px rgba(0,0,0,0.6);
+
+    color: #2b2622;
+
+    max-width: 900px;
 }
 
 
-/* =====================================
-   ENTRY TYPOGRAPHY
-===================================== */
+/* JOURNAL TEXT */
 
-.entry-text {
-    font-size: 20px;
-    line-height: 1.9;
-    letter-spacing: 0.3px;
-}
-
-.entry-text p {
+.journal-entry p {
     text-indent: 2em;
-    margin-bottom: 1.6em;
+    line-height: 1.9;
+    font-size: 20px;
 }
 
 
-/* =====================================
-   TITLE
-===================================== */
+/* JOURNAL TITLE */
 
-.entry-title {
+.journal-entry h1 {
     text-align: center;
     letter-spacing: 2px;
     margin-bottom: 60px;
@@ -153,9 +159,9 @@ html, body {
 }
 
 
-/* =====================================
-   FADE TRANSITION
-===================================== */
+/* ==================================================
+   ENTRY TRANSITION
+================================================== */
 
 .fade {
     opacity: 0;
@@ -163,6 +169,8 @@ html, body {
 
 </style>
 </head>
+
+
 
 <body>
 
@@ -194,11 +202,12 @@ html, body {
 </div>
 
 
+
 <script>
 
-/* =====================================
+/* ==================================================
    ENTRY LOADER
-===================================== */
+================================================== */
 
 function loadEntry(entry) {
 
@@ -214,7 +223,7 @@ function loadEntry(entry) {
         .then(html => {
 
             container.innerHTML = html;
-            container.scrollTop = 0; // reset page
+            container.scrollTop = 0;
             container.classList.remove("fade");
 
         });
